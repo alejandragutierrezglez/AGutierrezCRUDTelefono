@@ -1,0 +1,46 @@
+﻿@model ML.Telefono
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>Bienvenido, seleccione agregar para dar de alta un telefono</p>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 ">
+            @Html.ActionLink("Agregar", "Form", "Telefono", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-bordered table-responsive">
+                <thead class="thead-dark">
+                    <tr>
+                        <td>Editar</td>
+                        <td class="hidden">IdTelefono</td>
+                        <td>Marca</td>
+                        <td>Modelo </td>
+                        <td>NumSerie</td>
+                        <td>Eliminar</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.Telefono telefono in Model.Telefonos)
+                    {
+                        <tr>
+                            <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Telefono", new { IdTelefono = telefono.IdTelefono })"></a></td>
+                            <td class="hidden">@telefono.IdTelefono</td>
+                            <td>@telefono.Marca</td>
+                            <td>@telefono.Modelo</td>
+                            <td>@telefono.NumSerie</td>                         
+                            <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-erase" href="@Url.Action("Delete", "Telefono", new { IdTelefono = telefono.IdTelefono })" onclick="return confirm('¿Estas seguro que deseas eliminar este registro?');"></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AGutierrezCRUDTelefonoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Telefono">
+          <Key>
+            <PropertyRef Name="IdTelefono" />
+          </Key>
+          <Property Name="IdTelefono" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="50" />
+          <Property Name="Modelo" Type="varchar" MaxLength="100" />
+          <Property Name="NumSerie" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="TelefonoAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Marca" Type="varchar" Mode="In" />
+          <Parameter Name="Modelo" Type="varchar" Mode="In" />
+          <Parameter Name="NumSerie" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="TelefonoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTelefono" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TelefonoGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TelefonoGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTelefono" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TelefonoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTelefono" Type="int" Mode="In" />
+          <Parameter Name="Marca" Type="varchar" Mode="In" />
+          <Parameter Name="Modelo" Type="varchar" Mode="In" />
+          <Parameter Name="NumSerie" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="AGutierrezCRUDTelefonoModelStoreContainer">
+          <EntitySet Name="Telefono" EntityType="Self.Telefono" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AGutierrezCRUDTelefonoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Telefono">
+          <Key>
+            <PropertyRef Name="IdTelefono" />
+          </Key>
+          <Property Name="IdTelefono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Modelo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NumSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="AGutierrezCRUDTelefonoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Telefonoes" EntityType="Self.Telefono" />
+          <FunctionImport Name="TelefonoAdd">
+            <Parameter Name="Marca" Mode="In" Type="String" />
+            <Parameter Name="Modelo" Mode="In" Type="String" />
+            <Parameter Name="NumSerie" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TelefonoDelete">
+            <Parameter Name="IdTelefono" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TelefonoGetAll" ReturnType="Collection(AGutierrezCRUDTelefonoModel.TelefonoGetAll_Result)" />
+          <FunctionImport Name="TelefonoGetById" ReturnType="Collection(AGutierrezCRUDTelefonoModel.TelefonoGetById_Result)">
+            <Parameter Name="IdTelefono" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TelefonoUpdate">
+            <Parameter Name="IdTelefono" Mode="In" Type="Int32" />
+            <Parameter Name="Marca" Mode="In" Type="String" />
+            <Parameter Name="Modelo" Mode="In" Type="String" />
+            <Parameter Name="NumSerie" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="TelefonoGetAll_Result">
+          <Property Type="Int32" Name="IdTelefono" Nullable="false" />
+          <Property Type="String" Name="Marca" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Modelo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NumSerie" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="TelefonoGetById_Result">
+          <Property Type="Int32" Name="IdTelefono" Nullable="false" />
+          <Property Type="String" Name="Marca" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Modelo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NumSerie" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AGutierrezCRUDTelefonoModelStoreContainer" CdmEntityContainer="AGutierrezCRUDTelefonoEntities">
+          <EntitySetMapping Name="Telefonoes">
+            <EntityTypeMapping TypeName="AGutierrezCRUDTelefonoModel.Telefono">
+              <MappingFragment StoreEntitySet="Telefono">
+                <ScalarProperty Name="IdTelefono" ColumnName="IdTelefono" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="NumSerie" ColumnName="NumSerie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="TelefonoAdd" FunctionName="AGutierrezCRUDTelefonoModel.Store.TelefonoAdd" />
+          <FunctionImportMapping FunctionImportName="TelefonoDelete" FunctionName="AGutierrezCRUDTelefonoModel.Store.TelefonoDelete" />
+          <FunctionImportMapping FunctionImportName="TelefonoGetAll" FunctionName="AGutierrezCRUDTelefonoModel.Store.TelefonoGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AGutierrezCRUDTelefonoModel.TelefonoGetAll_Result">
+                <ScalarProperty Name="IdTelefono" ColumnName="IdTelefono" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="NumSerie" ColumnName="NumSerie" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TelefonoGetById" FunctionName="AGutierrezCRUDTelefonoModel.Store.TelefonoGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AGutierrezCRUDTelefonoModel.TelefonoGetById_Result">
+                <ScalarProperty Name="IdTelefono" ColumnName="IdTelefono" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="NumSerie" ColumnName="NumSerie" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TelefonoUpdate" FunctionName="AGutierrezCRUDTelefonoModel.Store.TelefonoUpdate" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
